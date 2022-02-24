@@ -1,58 +1,47 @@
-"""Demo resource strategy class."""
+"""Demo filter strategy."""
 # pylint: disable=no-self-use,unused-argument
 from dataclasses import dataclass
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, List
 
-from oteapi.plugins import create_strategy
+from pydantic import BaseModel, Field
 
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
-    from oteapi.models.resourceconfig import ResourceConfig
+    from oteapi.models.filterconfig import FilterConfig
+
 
 
 @dataclass
-class OntoKBResourceStrategy:
-    """Resource Strategy."""
+class TestFilterStrategy:
+    """Filter Strategy."""
 
-    resource_config: "ResourceConfig"
+    filter_config: "FilterConfig"
 
     def initialize(
         self, session: "Optional[Dict[str, Any]]" = None
     ) -> "Dict[str, Any]":
         """Initialize strategy.
-
         This method will be called through the `/initialize` endpoint of the OTE-API
         Services.
-
         Parameters:
             session: A session-specific dictionary context.
-
         Returns:
             Dictionary of key/value-pairs to be stored in the sessions-specific
             dictionary context.
-
         """
-        print("[ONTOKB PLUGIN DATASOURCE]: Initialize")
+        print("[ONTOKB PLUGIN FILTER]: Initialize")
         return {}
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute the strategy.
-
         This method will be called through the strategy-specific endpoint of the
         OTE-API Services.
-
         Parameters:
             session: A session-specific dictionary context.
-
         Returns:
             Dictionary of key/value-pairs to be stored in the sessions-specific
             dictionary context.
-
         """
-        print("[ONTOKB PLUGIN DATASOURCE]: Getting data")
-        # Example of the plugin using the download strategy to fetch the data
-        # download_strategy = create_strategy("download", self.resource_config)
-        # read_output = download_strategy.get(session)
-        # return {"output": read_output}
-        return {"output": ""}
+        print("[ONTOKB PLUGIN FILTER]: Getting data")
+        return {"key": ""}
