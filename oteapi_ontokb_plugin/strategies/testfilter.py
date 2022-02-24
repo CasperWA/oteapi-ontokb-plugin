@@ -36,7 +36,7 @@ class TestFilterStrategy:
         print("[ONTOKB PLUGIN FILTER]: Session in initialize {}".format(session))
         sessionupdate = SessionUpdate()
         for key in self.filter_config.configuration:
-            sessionupdate[key] = session[self.filter_config.configuration]
+            sessionupdate[key] = self.filter_config.configuration[key]
             
         return sessionupdate
 
