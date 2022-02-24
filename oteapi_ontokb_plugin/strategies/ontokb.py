@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 
 from oteapi.plugins import create_strategy
 
+from oteapi.models import SessionUpdate
+
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
@@ -34,7 +36,8 @@ class OntoKBResourceStrategy:
 
         """
         print("[ONTOKB PLUGIN DATASOURCE]: Initialize")
-        return {}
+        print("[ONTOKB PLUGIN DATASOURCE]: Session in initialize {}".format(session))
+        return SessionUpdate()
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute the strategy.
@@ -51,6 +54,7 @@ class OntoKBResourceStrategy:
 
         """
         print("[ONTOKB PLUGIN DATASOURCE]: Getting data")
+        print("[ONTOKB PLUGIN DATASOURCE]: Session in get {}".format(session))
         # Example of the plugin using the download strategy to fetch the data
         # download_strategy = create_strategy("download", self.resource_config)
         # read_output = download_strategy.get(session)

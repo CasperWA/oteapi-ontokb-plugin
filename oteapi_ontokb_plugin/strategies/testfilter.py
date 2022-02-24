@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING, List
 
 from pydantic import BaseModel, Field
 
+from oteapi.models import SessionUpdate
+
 if TYPE_CHECKING:
     from typing import Any, Dict, Optional
 
@@ -31,7 +33,8 @@ class TestFilterStrategy:
             dictionary context.
         """
         print("[ONTOKB PLUGIN FILTER]: Initialize")
-        return {}
+        print("[ONTOKB PLUGIN FILTER]: Session in initialize {}".format(session))
+        return SessionUpdate()
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute the strategy.
@@ -44,4 +47,5 @@ class TestFilterStrategy:
             dictionary context.
         """
         print("[ONTOKB PLUGIN FILTER]: Getting data")
+        print("[ONTOKB PLUGIN FILTER]: Session in get {}".format(session))
         return {"key": ""}
