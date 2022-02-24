@@ -34,7 +34,11 @@ class TestFilterStrategy:
         """
         print("[ONTOKB PLUGIN FILTER]: Initialize")
         print("[ONTOKB PLUGIN FILTER]: Session in initialize {}".format(session))
-        return SessionUpdate()
+        sessionupdate = SessionUpdate()
+        for key in self.filter_config.configuration:
+            sessionupdate[key] = session[self.filter_config.configuration]
+            
+        return sessionupdate
 
     def get(self, session: "Optional[Dict[str, Any]]" = None) -> "Dict[str, Any]":
         """Execute the strategy.
